@@ -1,8 +1,7 @@
-/* ==================== 0. 全域 CSS 變數與重置 ==================== */
 :root {
-    --primary-color: #4CAF50;
-    --secondary-color: #166534;
-    --text-color-dark: #374151;
+    --primary-color: #52796F;
+    --secondary-color: #EAEEE7;
+    --text-color-dark: #323232;
     --text-color-light: #6b7280;
     --bg-light: #f8f9fa;
     --bg-dark: #e5e7eb;
@@ -11,6 +10,10 @@
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
+    --footer-bg: #52796F;
+    /* 頁尾背景色 */
+    --news-bg: #F9FAFB;
+    /* 最新消息區塊背景色 */
 }
 
 /* 通用重置 */
@@ -47,7 +50,7 @@ a {
     display: none;
 }
 
-/* 讓螢幕閱讀器讀取，但視覺上隱藏 */
+/* 讓螢幕閱讀器讀取，但視覺上隱藏
 .sr-only {
     position: absolute;
     width: 1px;
@@ -58,12 +61,11 @@ a {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
-}
+} */
 
 /* ==================== 1. 頂部資訊列 ==================== */
 .top-bar {
     background-color: #4F6D66;
-    /* 調整為更深綠色 */
     color: white;
     font-size: 0.875rem;
     padding: var(--spacing-xs) var(--spacing-sm);
@@ -156,21 +158,12 @@ a {
     color: var(--text-color-dark);
 }
 
-@media (min-width: 768px) {
-    .nav-menu {
-        display: flex;
-    }
-
-    .hamburger-icon-wrapper {
-        display: none;
-    }
-}
 
 /* ==================== 3. 首頁橫幅 (Banner) ==================== */
 .banner {
     width: 100%;
-    height: 80vh;
-    /* 使用 vh 確保高度佔滿視窗比例 */
+    height: 40vh;
+    /* 調整高度為 40vh */
     overflow: hidden;
     position: relative;
 }
@@ -179,7 +172,6 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* 關鍵：確保圖片填滿容器且不變形 */
     object-position: center;
 }
 
@@ -188,7 +180,6 @@ a {
     position: relative;
     z-index: 10;
     margin-top: -4rem;
-    /* 讓區塊與 banner 重疊 */
 }
 
 .quick-links-grid {
@@ -246,10 +237,13 @@ a {
 /* ==================== 5. 最新消息區塊 ==================== */
 .news-section {
     padding: var(--spacing-lg) 0;
+    background-color: #F9FAFB;
+    /* 更新背景色 */
 }
 
 .news-container {
-    background-color: white;
+    background-color: #EAEEE7;
+    /* 更新為新的背景色 */
     padding: var(--spacing-md);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -257,7 +251,8 @@ a {
 
 .tab-buttons {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    /* 置中 */
     border-bottom: 2px solid var(--border-color);
     margin-bottom: var(--spacing-md);
 }
@@ -404,7 +399,8 @@ a {
 
 /* ==================== 6. 科室介紹區塊 ==================== */
 .departments-section {
-    background-color: var(--bg-dark);
+    background-color: #F9FAFB;
+    /* 更新背景色 */
     padding: var(--spacing-lg) 0;
 }
 
@@ -443,21 +439,31 @@ a {
 }
 
 .department-cards {
-    display: flex;
-    overflow-x: auto;
+    display: grid;
+    /* 修改為 Grid 排列 */
+    grid-template-columns: repeat(2, 1fr);
+    /* 手機版每行2個 */
     gap: var(--spacing-sm);
-    padding: var(--spacing-sm);
+    justify-items: center;
+    /* 置中對齊卡片 */
+    padding: var(--spacing-sm) 0;
+}
+
+@media (min-width: 768px) {
+    .department-cards {
+        grid-template-columns: repeat(4, 1fr);
+        /* 桌面版每行4個 */
+    }
 }
 
 .department-card {
-    flex-shrink: 0;
-    width: 12rem;
     background-color: white;
     padding: var(--spacing-md);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
 }
 
 .department-card:hover {
@@ -496,11 +502,23 @@ a {
 /* ==================== 7. 醫療團隊區塊 ==================== */
 .team-section {
     padding: var(--spacing-lg) 0;
+    background-color: #52796F;
+    /* 更新背景色 */
+    color: white;
+}
+
+.team-title .section-title {
+    color: white;
+}
+
+.team-title .section-title::after {
+    background-color: white;
 }
 
 .team-filters {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    /* 靠右對齊 */
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-md);
 }
@@ -522,12 +540,21 @@ a {
     flex-wrap: wrap;
     gap: var(--spacing-sm);
     justify-content: center;
+    /* 預設置中 */
+}
+
+@media (min-width: 768px) {
+    .team-members-carousel {
+        justify-content: flex-end;
+        /* 桌面版靠右對齊 */
+    }
 }
 
 .team-member {
     flex-basis: calc(50% - var(--spacing-xs));
     max-width: calc(50% - var(--spacing-xs));
     background-color: white;
+    color: var(--text-color-dark);
     padding: var(--spacing-sm);
     border-radius: 0.5rem;
     text-align: center;
@@ -606,6 +633,8 @@ a {
 /* ==================== 9. 醫院優勢區塊 ==================== */
 .advantages-section {
     padding: var(--spacing-lg) 0;
+    background-color: #F9FAFB;
+    /* 更新背景色 */
 }
 
 .advantages-content {
@@ -663,7 +692,8 @@ a {
 
 /* ==================== 10. 頁尾 (Footer) ==================== */
 .footer {
-    background-color: #333;
+    background-color: #52796F;
+    /* 更新背景色 */
     color: white;
     padding: var(--spacing-lg) 0;
 }
@@ -679,6 +709,17 @@ a {
     }
 }
 
+.footer-links-group h4,
+.footer-info h4,
+.footer-contact h4 {
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+}
+
+.footer-links-group ul {
+    list-style: none;
+}
+
 .footer-link {
     display: block;
     padding: 0.25rem 0;
@@ -689,20 +730,37 @@ a {
     color: var(--primary-color);
 }
 
-.social-links {
-    list-style: none;
+.footer-info p,
+.footer-contact p {
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-xs);
 }
 
-.social-links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+.footer-contact strong {
+    display: block;
+    margin-top: var(--spacing-sm);
+}
+
+.footer-contact p.no-smoking {
+    margin-top: var(--spacing-md);
+    font-style: italic;
 }
 
 .footer-copyright {
     text-align: center;
     margin-top: var(--spacing-lg);
-    border-top: 1px solid #555;
+    border-top: 1px solid #759A8B;
     padding-top: var(--spacing-md);
     font-size: 0.875rem;
+}
+
+/* 主導覽列 */
+@media (min-width: 768px) {
+    .nav-menu {
+        display: flex;
+    }
+
+    .hamburger-icon-wrapper {
+        display: none;
+    }
 }
