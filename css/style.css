@@ -1,5 +1,6 @@
 :root {
     --primary-color: #52796F;
+    --primary-color7: #354F52;
     --secondary-color: #EAEEE7;
     --text-color-dark: #323232;
     --text-color-light: #6b7280;
@@ -162,8 +163,7 @@ a {
 /* ==================== 3. 首頁橫幅 (Banner) ==================== */
 .banner {
     width: 100%;
-    height: 40vh;
-    /* 調整高度為 40vh */
+    height: 70vh;
     overflow: hidden;
     position: relative;
 }
@@ -188,11 +188,7 @@ a {
     gap: var(--spacing-sm);
 }
 
-@media (min-width: 768px) {
-    .quick-links-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+
 
 .quick-link-card {
     display: flex;
@@ -201,37 +197,22 @@ a {
     justify-content: center;
     padding: var(--spacing-md);
     background-color: white;
-    color: var(--text-color-dark);
+    color: #354F52;
     font-weight: bold;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* 滑鼠移上去時卡片會稍微浮起並放大一點 */
 .quick-link-card:hover {
     transform: translateY(-0.25rem) scale(1.02);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .quick-link-icon {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: var(--spacing-xs);
-}
-
-.icon-green {
-    color: var(--primary-color);
-}
-
-.icon-blue {
-    color: #2563eb;
-}
-
-.icon-yellow {
-    color: #d97706;
-}
-
-.icon-red {
-    color: #dc2626;
 }
 
 /* ==================== 5. 最新消息區塊 ==================== */
@@ -243,7 +224,6 @@ a {
 
 .news-container {
     background-color: #EAEEE7;
-    /* 更新為新的背景色 */
     padding: var(--spacing-md);
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -252,30 +232,33 @@ a {
 .tab-buttons {
     display: flex;
     justify-content: center;
-    /* 置中 */
-    border-bottom: 2px solid var(--border-color);
+    gap: 8px;
     margin-bottom: var(--spacing-md);
 }
 
 .tab-btn {
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: 8px 24px;
+    /* 上下/左右內距 */
     font-size: 1rem;
     font-weight: bold;
-    color: var(--text-color-light);
-    background-color: transparent;
+    color: white;
+    /* 預設白字 */
+    background-color: #A3A3A3;
+    /* 預設灰色底 */
     border: none;
+    border-radius: 0.25rem;
     cursor: pointer;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    border-bottom: 2px solid transparent;
-}
-
-.tab-btn:hover {
-    color: var(--text-color-dark);
+    transition: background-color 0.3s ease;
 }
 
 .tab-btn.active {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    /* 深綠色底 */
+}
+
+.tab-btn:hover {
+    background-color: var(--primary-color7);
+    /* 滑鼠懸停顏色深一點 */
 }
 
 .news-content {
@@ -296,18 +279,18 @@ a {
     display: flex;
     align-items: center;
     padding: var(--spacing-sm);
-    background-color: #f9fafb;
+    /* background-color: #f9fafb; */
     border-radius: 0.5rem;
     transition: background-color 0.3s ease;
 }
 
-.news-item:hover {
+/* .news-item:hover {
     background-color: var(--bg-dark);
-}
+} */
 
 .news-date {
     font-size: 0.875rem;
-    color: var(--text-color-light);
+    color: var(--primary-color7);
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -324,78 +307,31 @@ a {
     flex-shrink: 0;
 }
 
-@media (max-width: 767px) {
-    .news-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .news-title {
-        margin: 0.25rem 0;
-    }
-}
-
 .news-more-link {
-    display: block;
-    text-align: right;
-    margin-top: var(--spacing-md);
+    display: flex;
+    width: 150px;
+    /* 固定桌面寬度 */
+    padding: 12px 39px;
+    justify-content: center;
+    /* 水平置中按鈕內文字 */
+    align-items: center;
+    /* 垂直置中按鈕內文字 */
+    margin: var(--spacing-md) auto 0;
+    /* 外邊距，左右 auto 置中 */
+    background-color: #ffffff;
     color: var(--primary-color);
     font-weight: 500;
-    transition: color 0.3s ease;
+    border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .news-more-link:hover {
-    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: white;
 }
 
-/* 動態影片 carousel */
-.news-video-carousel-wrapper {
-    overflow: hidden;
-}
-
-.news-video-carousel {
-    display: flex;
-    gap: var(--spacing-sm);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding-bottom: 1rem;
-}
-
-.video-card {
-    flex-shrink: 0;
-    width: 100%;
-    scroll-snap-align: start;
-}
-
-@media (min-width: 768px) {
-    .video-card {
-        width: calc(50% - var(--spacing-xs));
-    }
-}
-
-@media (min-width: 1024px) {
-    .video-card {
-        width: calc(33.333% - var(--spacing-md));
-    }
-}
-
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    /* 16:9 比例 */
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
 
 /* ==================== 6. 科室介紹區塊 ==================== */
 .departments-section {
@@ -410,23 +346,12 @@ a {
 }
 
 .section-title {
-    position: relative;
+    /* position: relative; 底線*/
     display: inline-block;
     padding-bottom: var(--spacing-xs);
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary-color);
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4rem;
-    height: 0.25rem;
-    background-color: var(--primary-color);
+    color: var(--text-color-dark);
 }
 
 .section-subtitle {
@@ -442,33 +367,44 @@ a {
     display: grid;
     /* 修改為 Grid 排列 */
     grid-template-columns: repeat(2, 1fr);
-    /* 手機版每行2個 */
+    /* 手機版每行1個 */
     gap: var(--spacing-sm);
     justify-items: center;
     /* 置中對齊卡片 */
     padding: var(--spacing-sm) 0;
 }
 
-@media (min-width: 768px) {
-    .department-cards {
-        grid-template-columns: repeat(4, 1fr);
-        /* 桌面版每行4個 */
-    }
-}
+
 
 .department-card {
-    background-color: white;
+    background-color: #EAEEE7;
     padding: var(--spacing-md);
     border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
 }
 
+.department-card-1 {
+    background-color: #ffffff;
+    padding: var(--spacing-md);
+    border-radius: 0.5rem;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    border: 1px solid var(--primary-color);
+}
+
 .department-card:hover {
     transform: translateY(-0.25rem) scale(1.02);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+
+}
+
+.department-card-1:hover {
+    transform: translateY(-0.25rem) scale(1.02);
+
 }
 
 .card-icon-wrapper {
@@ -479,19 +415,19 @@ a {
     width: 4rem;
     margin: 0 auto var(--spacing-sm);
     border-radius: 9999px;
-    background-color: #d1fae5;
+    background-color: var(--primary-color);
 }
 
 .card-icon {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: white;
 }
 
 .card-title {
     font-weight: bold;
     font-size: 1.125rem;
     margin-bottom: var(--spacing-xs);
-    color: var(--text-color-dark);
+    color: var(--primary-color);
 }
 
 .card-description {
@@ -543,29 +479,15 @@ a {
     /* 預設置中 */
 }
 
-@media (min-width: 768px) {
-    .team-members-carousel {
-        justify-content: flex-end;
-        /* 桌面版靠右對齊 */
-    }
-}
-
 .team-member {
-    flex-basis: calc(50% - var(--spacing-xs));
-    max-width: calc(50% - var(--spacing-xs));
+    flex-basis: 100%;
+    max-width: 100%;
     background-color: white;
     color: var(--text-color-dark);
     padding: var(--spacing-sm);
     border-radius: 0.5rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 768px) {
-    .team-member {
-        flex-basis: calc(25% - var(--spacing-sm));
-        max-width: calc(25% - var(--spacing-sm));
-    }
 }
 
 .team-member img {
@@ -588,7 +510,7 @@ a {
 
 /* ==================== 8. 衛教影片區塊 (Carousel) ==================== */
 .video-section {
-    background-color: var(--bg-dark);
+    background-color: #F9FAFB;
     padding: var(--spacing-lg) 0;
 }
 
@@ -630,6 +552,8 @@ a {
     transform: scale(1.2);
 }
 
+
+
 /* ==================== 9. 醫院優勢區塊 ==================== */
 .advantages-section {
     padding: var(--spacing-lg) 0;
@@ -640,15 +564,9 @@ a {
 .advantages-content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: 80px;
 }
 
-@media (min-width: 768px) {
-    .advantages-content {
-        flex-direction: row;
-        align-items: center;
-    }
-}
 
 .advantage-image-wrapper {
     flex: 1;
@@ -703,11 +621,6 @@ a {
     gap: var(--spacing-md);
 }
 
-@media (min-width: 768px) {
-    .footer-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 .footer-links-group h4,
 .footer-info h4,
@@ -723,12 +636,12 @@ a {
 .footer-link {
     display: block;
     padding: 0.25rem 0;
-    transition: color 0.3s ease;
+    /* transition: color 0.3s ease; */
 }
 
-.footer-link:hover {
+/* .footer-link:hover {
     color: var(--primary-color);
-}
+} */
 
 .footer-info p,
 .footer-contact p {
@@ -736,14 +649,14 @@ a {
     margin-bottom: var(--spacing-xs);
 }
 
-.footer-contact strong {
+.footer-contact {
     display: block;
     margin-top: var(--spacing-sm);
 }
 
-.footer-contact p.no-smoking {
+.footer-contact p {
     margin-top: var(--spacing-md);
-    font-style: italic;
+
 }
 
 .footer-copyright {
@@ -754,13 +667,113 @@ a {
     font-size: 0.875rem;
 }
 
-/* 主導覽列 */
+
+
+
+/* 右側按鈕 */
+
+.fixed-buttons-wrapper {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    /* 你想要的高度 */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.fixed-button {
+    /* 不要 position: fixed 這一段 */
+    background-color: var(--primary-color);
+    color: white;
+    padding: var(--spacing-sm);
+    text-decoration: none;
+    transition: background-color 300ms;
+    border-radius: 2px 0 0 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    height: 6rem;
+    width: 100px;
+    /* 你可以調整寬度 */
+}
+
+.btn-1 {
+    border-bottom: 1px solid white;
+
+}
+
+.fixed-button:hover {
+    background-color: var(--primary-color7);
+}
+
+
 @media (min-width: 768px) {
+
+    /* 主導覽列 */
     .nav-menu {
         display: flex;
     }
 
     .hamburger-icon-wrapper {
+        display: none;
+    }
+
+
+    /* banner */
+    .quick-links-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* 科室介紹區塊 */
+    .department-cards {
+        grid-template-columns: repeat(4, 1fr);
+        /* 桌面版每行4個 */
+    }
+
+    /* 醫療團隊區塊 */
+
+    .team-members-carousel {
+        justify-content: flex-end;
+        /* 桌面版靠右對齊 */
+    }
+
+    .team-member {
+        flex-basis: calc(20% - var(--spacing-sm));
+        max-width: calc(20% - var(--spacing-sm));
+    }
+
+    /* 醫院優勢區塊 */
+    .advantages-content {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    /* Footer     */
+
+    .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+/* 最新消息 */
+@media (max-width: 767px) {
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .news-title {
+        margin: 0.25rem 0;
+    }
+
+    /* 手機隱藏按鈕 */
+    .fixed-buttons-wrapper {
         display: none;
     }
 }
