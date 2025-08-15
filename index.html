@@ -35,18 +35,52 @@
     <!-- 主導覽列 -->
     <header class="header">
         <div class="container header-content">
+            <!-- Logo -->
             <a href="#" class="logo-wrapper">
                 <img src="./images/logo.png" alt="三軍總醫院 Logo" class="logo">
             </a>
+
+            <!-- 導覽列 -->
             <nav class="nav-menu">
-                <a href="#" class="nav-link">認識三總</a>
-                <a href="#" class="nav-link">所屬分院</a>
-                <a href="#" class="nav-link">單位介紹</a>
-                <a href="#" class="nav-link">衛教資訊</a>
-                <a href="#" class="nav-link">常見問答</a>
-                <a href="#" class="nav-link">人才招募</a>
-                <a href="#" class="nav-link">轉診診所</a>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">認識三總</a>
+                        <ul class="submenu">
+                            <li><a href="#">院長的話</a></li>
+                            <li><a href="#">院長介紹</a></li>
+                            <li><a href="#">歷任院長</a></li>
+                            <li><a href="#">榮譽事蹟</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">所屬分院</a>
+                        <ul class="submenu">
+                            <li><a href="#">汀洲分院</a></li>
+                            <li><a href="#">松山分院</a></li>
+                            <li><a href="#">北投分院</a></li>
+                            <li><a href="#">內湖分院</a></li>
+                            <li><a href="#">澎湖分院</a></li>
+                            <li><a href="#">台北門診</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="nav-link">單位介紹</a>
+                        <ul class="submenu">
+                            <li><a href="#">內科</a></li>
+                            <li><a href="#">外科</a></li>
+                            <li><a href="#">小兒婦產</a></li>
+                            <li><a href="#">其他專科</a></li>
+                            <li><a href="#">行政部門</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="nav-link">衛教資訊</a></li>
+                    <li><a href="#" class="nav-link">常見問答</a></li>
+                    <li><a href="#" class="nav-link">人才招募</a></li>
+                    <li><a href="#" class="nav-link">轉診診所</a></li>
+                </ul>
             </nav>
+
+            <!-- 漢堡選單 -->
             <div class="hamburger-icon-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="hamburger-icon">
@@ -464,7 +498,16 @@
 
     <!-- JavaScript 實現動態功能 -->
     <script>
+        // 選單//
+        const hamburger = document.querySelector('.hamburger-icon-wrapper');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
         document.addEventListener('DOMContentLoaded', function () {
+
 
             // banner//
             const images = document.querySelectorAll('.banner-image');
